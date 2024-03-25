@@ -1,0 +1,17 @@
+<div id="{{ mapname|raw }}" {% if classes %}class="{{ classes|raw }}"{% else %}style="width: {{ width|raw }}; height: {{ height|raw }};" {%endif %}></div>
+<script>
+document.addEventListener('DOMContentLoaded', function(event) {
+    const map = new ol.Map({
+        target: '{{ mapname|raw }}',
+        layers: [
+            new ol.Tile({
+                source: new ol.OSM(),
+            }),
+        ],
+        view: new ol.View({
+            center: [{{ lat|raw }}, {{ lng|raw }}],
+            zoom: {{ zoom|raw }},
+        }),
+    });
+})
+</script>

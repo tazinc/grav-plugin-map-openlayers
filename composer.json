@@ -1,0 +1,24 @@
+{
+  "name": "gschafra/grav-plugin-map-openlayers",
+  "type": "grav-plugin",
+  "description": "Map plugin for grav based on openlayers JS",
+  "keywords": ["plugin"],
+  "homepage": "https://github.com/gschafra/grav-plugin-map-openlayers",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Guenter Schafranek",
+      "email": "gschafra@web.de",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=8.2.1",
+    "s1syphos/php-simple-captcha": "^2.3.0"
+  },
+  "config": {
+    "platform": {
+      "php": "8.2"
+    }
+  }
+}
