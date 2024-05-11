@@ -46,7 +46,6 @@ jobs:
               --disableBundleAudit
               --disableRubygems
               --disableYarnAudit
-              --disableNodeJS
               --disableMSBuild
               --disableRetireJS
               --disableMSBuild
