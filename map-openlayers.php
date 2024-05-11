@@ -27,12 +27,8 @@ class MapOpenlayersPlugin extends Plugin
         //add assets
         $assets = $this->grav['assets'];
 
-        $assets->registerCollection('openlayers', [
-            'plugin://map-openlayers/assets/openlayers.js',
-            'plugin://map-openlayers/assets/openlayers.css',
-        ]);
-
-        $assets->add('openlayers', 90);
+        $assets->addJs('plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]);
+        $assets->addCss('plugin://map-openlayers/assets/openlayers.css', ['priority' => 90]);
     }
 
     public function onTwigTemplatePaths()

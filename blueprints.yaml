@@ -34,13 +34,11 @@ form:
             label: Map tile provider
             options:
                 openstreetmap: "Open Street Map"
-                mapbox: Mapbox
                 bing: Bing
-                stadia: "Stadia Maps"
             default: openstreetmap
-        mapboxstyle:
+        osmstyle:
             type: conditional
-            condition: "config.plugins['map-openlayers'].provider == 'mapbox' "
+            condition: "config.plugins['map-openlayers'].provider == 'openstreetmap' "
             fields:
                 preffered:
                     type: select
