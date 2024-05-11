@@ -7,12 +7,6 @@ executions:
       node: gh-checkout
       port: exec
   - src:
-      node: gh-sonarsource-sonarqube-scan-action-master-kiwi-pineapple-watermelon
-      port: exec
-    dst:
-      node: gh-sonarsource-sonarqube-quality-gate-action-master-pink-brown-monkey
-      port: exec
-  - src:
       node: gh-checkout
       port: exec
     dst:
@@ -50,14 +44,6 @@ nodes:
       env:
         - SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
         - SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }}
-    settings:
-      folded: false
-  - id: gh-sonarsource-sonarqube-quality-gate-action-master-pink-brown-monkey
-    type: >-
-      github.com/sonarsource/sonarqube-quality-gate-action@72f24ebf1f81eda168a979ce14b8203273b7c3ad
-    position:
-      x: 1370
-      y: 210
     settings:
       folded: false
   - id: gh-dependency-check-dependency-check-action-main-lion-octopus-kangaroo
