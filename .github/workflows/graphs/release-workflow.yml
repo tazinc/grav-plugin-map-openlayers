@@ -53,9 +53,9 @@ nodes:
       x: 630
       y: 220
     inputs:
+      format: HTML
       args: >-
-        --project grav-plugin-map-openlayers --out reports --format XML --format
-        HTML --format JSON --exclude /node_modules/ --exclude /vendor/
+        --format XML --format JSON --exclude /node_modules/ --exclude /vendor/
         --enableExperimental --nodeAuditSkipDevDependencies --disableJar
         --disableNugetconf --disableGolangMod --disableGolangDep  --disableCpan
         --disableCmake --disableOpenSSL --disableAutoconf --disableBundleAudit
@@ -63,6 +63,8 @@ nodes:
         --disableMSBuild --disableRetireJS --disableMSBuild --disablePyPkg
         --disablePyDist --disableArchive --disableNuspec --disableAssembly
         --disableCocoapodsAnalyzer --disableSwiftPackageManagerAnalyzer
+      project: grav-plugin-map-openlayers
+      path: .
     settings:
       folded: false
 registries:
