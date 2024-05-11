@@ -17,6 +17,9 @@ jobs:
         #     graph_file: release-workflow.yml
         - name: Checkout
           uses: actions/checkout@v2
+        - uses: pnpm/action-setup@v4
+          with:
+            version: 9
         - name: Depcheck
           uses: dependency-check/Dependency-Check_Action@main
           id: Depcheck
