@@ -1,0 +1,92 @@
+entry: gh-start
+executions:
+  - src:
+      node: gh-start
+      port: exec-on-push
+    dst:
+      node: gh-checkout
+      port: exec
+  - src:
+      node: gh-sonarsource-sonarqube-scan-action-master-kiwi-pineapple-watermelon
+      port: exec
+    dst:
+      node: gh-sonarsource-sonarqube-quality-gate-action-master-pink-brown-monkey
+      port: exec
+  - src:
+      node: gh-checkout
+      port: exec
+    dst:
+      node: gh-dependency-check-dependency-check-action-main-lion-octopus-kangaroo
+      port: exec
+  - src:
+      node: gh-dependency-check-dependency-check-action-main-lion-octopus-kangaroo
+      port: exec
+    dst:
+      node: gh-sonarsource-sonarqube-scan-action-master-kiwi-pineapple-watermelon
+      port: exec
+connections: []
+nodes:
+  - id: gh-start
+    type: gh-start@v1
+    position:
+      x: -120
+      y: 200
+    settings:
+      folded: false
+  - id: gh-checkout
+    type: github.com/actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+    position:
+      x: 200
+      y: 200
+    settings:
+      folded: false
+  - id: gh-sonarsource-sonarqube-scan-action-master-kiwi-pineapple-watermelon
+    type: >-
+      github.com/sonarsource/sonarqube-scan-action@6abcb2537c297b61a7310bada652d7ef3f71fc08
+    position:
+      x: 910
+      y: 210
+    inputs:
+      env:
+        - SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
+        - SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }}
+    settings:
+      folded: false
+  - id: gh-sonarsource-sonarqube-quality-gate-action-master-pink-brown-monkey
+    type: >-
+      github.com/sonarsource/sonarqube-quality-gate-action@72f24ebf1f81eda168a979ce14b8203273b7c3ad
+    position:
+      x: 1370
+      y: 210
+    settings:
+      folded: false
+  - id: gh-dependency-check-dependency-check-action-main-lion-octopus-kangaroo
+    type: >-
+      github.com/dependency-check/dependency-check_action@3102a65fd5f36d0000297576acc56a475b0de98d
+    position:
+      x: 630
+      y: 220
+    inputs:
+      args: >-
+        --out reports --format XML --format HTML --format JSON --exclude
+        /node_modules/ --exclude /vendor/ --enableExperimental
+        --nodeAuditSkipDevDependencies --disableJar --disableNugetconf
+        --disableGolangMod --disableGolangDep  --disableCpan --disableCmake
+        --disableOpenSSL --disableAutoconf --disableBundleAudit
+        --disableRubygems --disableNodeAudit --disableYarnAudit --disableNodeJS
+        --disableMSBuild --disableRetireJS --disableMSBuild --disablePyPkg
+        --disablePyDist --disableArchive --disableNuspec --disableAssembly
+        --disableCocoapodsAnalyzer --disableSwiftPackageManagerAnalyzer
+      project: grav-plugin-map-openlayers
+      path: .
+    settings:
+      folded: false
+registries:
+  - github.com/shivammathur/setup-php@v2
+  - github.com/cycjimmy/semantic-release-action@v4
+  - github.com/sonarsource/sonarqube-scan-action@master
+  - github.com/sonarsource/sonarqube-quality-gate-action@master
+  - github.com/pnpm/action-setup@v4
+  - github.com/dependency-check/dependency-check_action@main
+  - github.com/actions/upload-artifact@master
+description: ''
