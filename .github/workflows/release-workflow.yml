@@ -1,11 +1,63 @@
-on: [push]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
     build-and-publish:
+
       runs-on: ubuntu-latest
-      name: My workflow
+      name: Release workflow
       steps:
-        - name: Execute Action Graph
-          uses: actionforge/action@5636645834e4a75cbc8c6c204e872ddc27632738 # v0.9.52
+        # - name: Execute Action Graph
+        #   uses: actionforge/action@5636645834e4a75cbc8c6c204e872ddc27632738 # v0.9.52
+        #   with:
+        #     graph_file: release-workflow.yml
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Depcheck
+          uses: dependency-check/Dependency-Check_Action@main
+          id: Depcheck
           with:
-            graph_file: release-workflow.yml
+            project: 'grav-plugin-map-openlayers'
+            path: '.'
+            format: 'HTML'
+            args: >
+              --format XML
+              --format HTML
+              --format JSON
+              --exclude /node_modules/
+              --exclude /vendor/
+              --enableExperimental
+              --nodeAuditSkipDevDependencies
+              --disableJar
+              --disableNugetconf
+              --disableGolangMod
+              --disableGolangDep
+              --disableCpan
+              --disableCmake
+              --disableOpenSSL
+              --disableAutoconf
+              --disableBundleAudit
+              --disableRubygems
+              --disableNodeAudit
+              --disableYarnAudit
+              --disableNodeJS
+              --disableMSBuild
+              --disableRetireJS
+              --disableMSBuild
+              --disablePyPkg
+              --disablePyDist
+              --disableArchive
+              --disableNuspec
+              --disableAssembly
+              --disableCocoapodsAnalyzer
+              --disableSwiftPackageManagerAnalyzer
+        - name: Upload Test results
+          uses: actions/upload-artifact@master
+          with:
+              name: Depcheck report
+              path: ${{github.workspace}}/reports
+
