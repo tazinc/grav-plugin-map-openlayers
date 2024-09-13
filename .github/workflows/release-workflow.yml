@@ -6,59 +6,62 @@ on:
   pull_request:
 
 jobs:
-    build-and-publish:
-
-      runs-on: ubuntu-latest
-      name: Release workflow
-      steps:
-        # - name: Execute Action Graph
-        #   uses: actionforge/action@5636645834e4a75cbc8c6c204e872ddc27632738 # v0.9.52
-        #   with:
-        #     graph_file: release-workflow.yml
-        - name: Checkout
-          uses: actions/checkout@v2
-        - uses: pnpm/action-setup@v4
-          with:
-            version: 9
-        - name: Depcheck
-          uses: dependency-check/Dependency-Check_Action@main
-          id: Depcheck
-          with:
-            project: 'grav-plugin-map-openlayers'
-            path: '.'
-            format: 'HTML'
-            args: >
-              --format XML
-              --format HTML
-              --format JSON
-              --exclude /node_modules/
-              --exclude /vendor/
-              --enableExperimental
-              --nodeAuditSkipDevDependencies
-              --disableJar
-              --disableNugetconf
-              --disableGolangMod
-              --disableGolangDep
-              --disableCpan
-              --disableCmake
-              --disableOpenSSL
-              --disableAutoconf
-              --disableBundleAudit
-              --disableRubygems
-              --disableYarnAudit
-              --disableMSBuild
-              --disableRetireJS
-              --disableMSBuild
-              --disablePyPkg
-              --disablePyDist
-              --disableArchive
-              --disableNuspec
-              --disableAssembly
-              --disableCocoapodsAnalyzer
-              --disableSwiftPackageManagerAnalyzer
-        - name: Upload Test results
-          uses: actions/upload-artifact@master
-          with:
-              name: Depcheck report
-              path: ${{github.workspace}}/reports
-
+  build-and-publish:
+    runs-on: ubuntu-latest
+    name: Release workflow
+    steps:
+      # - name: Execute Action Graph
+      #   uses: actionforge/action@5636645834e4a75cbc8c6c204e872ddc27632738 # v0.9.52
+      #   with:
+      #     graph_file: release-workflow.yml
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Depcheck
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: "grav-plugin-map-openlayers"
+          path: "."
+          format: "HTML"
+          args: >
+            --format XML
+            --format HTML
+            --format JSON
+            --exclude /node_modules/
+            --exclude /vendor/
+            --enableExperimental
+            --nodeAuditSkipDevDependencies
+            --disableJar
+            --disableNugetconf
+            --disableGolangMod
+            --disableGolangDep
+            --disableCpan
+            --disableCmake
+            --disableOpenSSL
+            --disableAutoconf
+            --disableBundleAudit
+            --disableRubygems
+            --disableYarnAudit
+            --disableMSBuild
+            --disableRetireJS
+            --disableMSBuild
+            --disablePyPkg
+            --disablePyDist
+            --disableArchive
+            --disableNuspec
+            --disableAssembly
+            --disableCocoapodsAnalyzer
+            --disableSwiftPackageManagerAnalyzer
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+          name: Depcheck report
+          path: ${{github.workspace}}/reports
+      - name: SonarQube scan
+        uses: sonarsource/sonarqube-scan-action@v3
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}

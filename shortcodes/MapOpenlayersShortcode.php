@@ -70,22 +70,28 @@ class MapOpenlayersShortcode extends Shortcode {
               $mml_map_id++;
             }
 
-            $output = $twig->processTemplate('partials/mapopenlayers.html.twig',
-            array_merge(
-                $provider,
-                [
-                    'mapname' =>  isset( $params['mapname'] )? $params['mapname'] : 'map',
-                    'lat' => isset( $params['lat'] )? $params['lat'] : '51.505',
-                    'lng' =>  isset( $params['lng'] )? $params['lng'] : '-0.09',
-                    'zoom' => isset( $params['zoom'] )? $params['zoom'] : '13',
-                    'width' => $width,
-                    'height' => $height,
-                    'classes' => isset( $params['classes'])? $params['classes'] : '',
-                    'scale' => array_key_exists('scale', $params)? 'True' : '', # default is FALSE, when scale is not set
-                    'markercode' => $markercode
-                ]
-            ));
-        return $output;
-    });
-}
+            $output = $twig->processTemplate(
+                'partials/mapopenlayers.html.twig',
+                array_merge(
+                    $provider,
+                    [
+                        'mapname' =>  isset( $params['mapname'] )? $params['mapname'] : 'map',
+                        'lat' => isset( $params['lat'] )? $params['lat'] : '51.505',
+                        'lng' =>  isset( $params['lng'] )? $params['lng'] : '-0.09',
+                        'zoom' => isset( $params['zoom'] )? $params['zoom'] : '13',
+                        'width' => $width,
+                        'height' => $height,
+                        'classes' => isset( $params['classes'])? $params['classes'] : '',
+                        'scale' => array_key_exists('scale', $params)? 'True' : '', # default is FALSE, when scale is not set
+                        'markercode' => $markercode
+                    ]
+                )
+            );
+
+            $this->shortcode->addAssets('js', ['plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]]);
+            $this->shortcode->addAssets('css', 'plugin://map-openlayers/assets/openlayers.css');
+
+            return $output;
+        });
+    }
 }

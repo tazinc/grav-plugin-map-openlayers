@@ -1,6 +1,7 @@
 <?php
 namespace Grav\Plugin;
 
+use Composer\Autoload\ClassLoader;
 use Grav\Common\Plugin;
 use RocketTheme\Toolbox\Event\Event;
 
@@ -13,6 +14,16 @@ class MapOpenlayersPlugin extends Plugin
         ];
     }
 
+    /**
+     * Composer autoload.
+     *
+     * @return ClassLoader
+     */
+    public function autoload(): ClassLoader
+    {
+        return require __DIR__ . '/vendor/autoload.php';
+    }
+
     public function onPluginsInitialized()
     {
         // Don't proceed if we are in the admin plugin
@@ -22,13 +33,13 @@ class MapOpenlayersPlugin extends Plugin
         // Enable the main events we are interested in
         $this->enable([
             'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
-            'onTwigTemplatePaths' => ['onTwigTemplatePaths',0]
+            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
         ]);
         //add assets
-        $assets = $this->grav['assets'];
+        // $assets = $this->grav['assets'];
 
-        $assets->addJs('plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]);
-        $assets->addCss('plugin://map-openlayers/assets/openlayers.css', ['priority' => 90]);
+        // $assets->addJs('plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]);
+        // $assets->addCss('plugin://map-openlayers/assets/openlayers.css', ['priority' => 90]);
     }
 
     public function onTwigTemplatePaths()

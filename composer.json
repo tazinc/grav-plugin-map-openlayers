@@ -13,11 +13,17 @@
     }
   ],
   "require": {
-    "php": ">=8.2.1"
+    "php": ">=8.2.1",
+    "augmentedlogic/osm-tile-proxy": "^0.5.2"
   },
   "config": {
     "platform": {
-      "php": "8.2"
+      "php": "8.3"
     }
+  },
+  "require-dev": {
+    "phpstan/phpstan": "*",
+    "rector/rector": "*",
+    "symplify/easy-coding-standard": "*"
   }
 }

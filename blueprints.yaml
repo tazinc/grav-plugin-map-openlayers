@@ -14,89 +14,57 @@ docs: https://github.com/gschafra/grav-plugin-map-layers/blob/master/README.md
 license: MIT
 
 dependencies:
-  - { name: grav, version: '>=1.7.0' }
-  - { name: shortcode-core, version: '>=5.1.0' }
+  - { name: grav, version: ">=1.7.0" }
+  - { name: shortcode-core, version: ">=5.1.0" }
 
 form:
-    fields:
-        enabled:
-            type: toggle
-            label: Plugin status
-            highlight: 1
-            default: 0
-            options:
-                1: Enabled
-                0: Disabled
-            validate:
-                type: bool
-        provider:
-            type: select
-            label: Map tile provider
-            options:
-                openstreetmap: "Open Street Map"
-                bing: Bing
-            default: openstreetmap
-        osmstyle:
-            type: conditional
-            condition: "config.plugins['map-openlayers'].provider == 'openstreetmap' "
-            fields:
-                preffered:
-                    type: select
-                    label: "Map Box Style"
-                    options:
-                        - 'mapbox.streets'
-                        - 'mapbox.outdoors'
-                        - 'mapbox.light'
-                        - 'mapbox.dark'
-                        - 'mapbox.satellite'
-                    default: 0
-                providers.mapbox.apikey:
-                    type: text
-                    label: API Key from the provider
-                    help: You should register your own API key with the provider and include it here
-                    default:  'querty'
-        thunderforeststyle:
-            type: conditional
-            condition: "config.plugins['map-openlayers'].provider == 'thunderforest' "
-            fields:
-                preffered:
-                    type: select
-                    label: "Thunderforest Style"
-                    options:
-                        - 'cycle'
-                        - 'transport'
-                        - 'landscape'
-                        - 'outdoors'
-                        - 'transport-dark'
-                        - 'spinal-map'
-                        - 'pioneer'
-                        - 'mobile-atlas'
-                        - 'neighbourhood'
-                    default: 0
-                providers.thunderforest.apikey:
-                    type: text
-                    label: API Key from the provider
-                    help: You should register your own API key with the provider and include it here
-                    default:  'querty'
-        cartostyle:
-            type: conditional
-            condition: "config.plugins['map-openlayers'].provider == 'carto' "
-            fields:
-                preffered:
-                    type: select
-                    label: "Carto Style"
-                    options:
-                        - 'light_all'
-                        - 'light_nolabels'
-                        - 'light_only_labels'
-                        - 'dark_all'
-                        - 'dark_nolabels'
-                        - 'dark_only_labels'
-                        - 'rastertiles/voyager'
-                        - 'rastertiles/voyager_nolabels'
-                        - 'rastertiles/voyager_only_labels'
-                        - 'rastertiles/voyager_labels_under'
-                    default: 0
-                providers.carto.apikey:
-                    type: hidden
-                    default:  ''
+  fields:
+    enabled:
+      type: toggle
+      label: Plugin status
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+    tileProxy.fieldset:
+      title: Tile Proxy
+      type: fieldset
+      fields:
+        tileProxy.enabled:
+          type: toggle
+          label: Use local tile proxy
+          highlight: 1
+          default: 0
+          options:
+            1: Enabled
+            0: Disabled
+          validate:
+            type: bool
+    provider:
+      type: elements
+      label: Map tile provider
+      options:
+        openstreetmap: "Open Street Map"
+        bing: Bing
+      default: openstreetmap
+      fields:
+        openstreetmap:
+          fields:
+            preffered:
+              type: select
+              label: "Map Box Style"
+              options:
+                - "mapbox.streets"
+                - "mapbox.outdoors"
+                - "mapbox.light"
+                - "mapbox.dark"
+                - "mapbox.satellite"
+              default: 0
+            providers.mapbox.apikey:
+              type: text
+              label: API Key from the provider
+              help: You should register your own API key with the provider and include it here
+              default: "querty"
