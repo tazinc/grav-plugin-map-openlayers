@@ -3,7 +3,10 @@ namespace Grav\Plugin;
 
 use Composer\Autoload\ClassLoader;
 use Grav\Common\Plugin;
+use Grav\Common\Uri;
+use Grav\Plugin\MapOpenlayers\TileProxy\MapStyle;
 use RocketTheme\Toolbox\Event\Event;
+use Grav\Plugin\MapOpenlayers\TileProxy\CustomTileProxy;
 
 class MapOpenlayersPlugin extends Plugin
 {
@@ -30,16 +33,52 @@ class MapOpenlayersPlugin extends Plugin
         if ($this->isAdmin()) {
             return;
         }
-        // Enable the main events we are interested in
-        $this->enable([
+
+        $events = [
             'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
-        ]);
+        ];
+
+        // Register tile proxy handling if configured
+        /** @var Uri $uriPath */
+        $uriPath = $this->grav['uri']->path();
+        $config = $this->config();
+
+        $route = $config['tile_proxy_route'] ?? '/tile_proxy';
+
+        // if $uriPath starts with $route, enable the tile proxy
+        if ($route && strpos($uriPath, $route) === 0) {
+            $this->enable([
+                'onPageInitialized' => ['onPageInitialized', 0]
+            ]);
+        }
+
+        // Enable the main events we are interested in
+        $this->enable($events);
         //add assets
         // $assets = $this->grav['assets'];
 
         // $assets->addJs('plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]);
         // $assets->addCss('plugin://map-openlayers/assets/openlayers.css', ['priority' => 90]);
+    }
+
+    /**
+     * Send user to a random page
+     */
+    public function onPageInitialized(): void
+    {
+        $style_osm = new MapStyle("osm");
+        $style_osm->setMirrors(array("http://a.tile.openstreetmap.org", "http://b.tile.openstreetmap.org", "http://c.tile.openstreetmap.org"));
+
+        //$style_osm->setEffectModulate(100, 50, 100);
+        //$style_osm->setEffectSepia(90);
+        //$style_osm->setEffectNegate();
+
+        $tileproxy = new CustomTileProxy($this->grav);
+        $tileproxy->addStyle($style_osm);
+        $tileproxy->setLogLevel(CustomTileProxy::LOGLEVEL_OFF);
+        $tileproxy->handle();
+        exit;
     }
 
     public function onTwigTemplatePaths()

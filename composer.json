@@ -14,7 +14,7 @@
   ],
   "require": {
     "php": ">=8.2.1",
-    "augmentedlogic/osm-tile-proxy": "^0.5.2"
+    "intervention/image": "^3.9"
   },
   "config": {
     "platform": {
@@ -25,5 +25,10 @@
     "phpstan/phpstan": "*",
     "rector/rector": "*",
     "symplify/easy-coding-standard": "*"
+  },
+  "autoload": {
+      "psr-4": {
+          "Grav\\Plugin\\MapOpenlayers\\TileProxy\\": "src"
+      }
   }
 }
