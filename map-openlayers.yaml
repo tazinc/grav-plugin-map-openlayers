@@ -1,11 +1,11 @@
 enabled: true
-provider: openstreetmap
+provider: osm
 apikey:
 preffered: 0
 
 # More providers available here: https://github.com/leaflet-extras/leaflet-providers/blob/master/leaflet-providers.js
 providers:
-  openstreetmap:
+  osm:
     tilestanza: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
     variants:

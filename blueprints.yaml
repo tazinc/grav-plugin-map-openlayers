@@ -8,7 +8,7 @@ author:
   name: Günter Schafranek
   email: gschafra@web.de
 homepage: https://github.com/gschafra/grav-plugin-map-openlayers
-keywords: grav, plugin, map, markers, openlayers, openstreetmap, opensource
+keywords: grav, plugin, map, markers, openlayers, openstreetmap, osm, opensource
 bugs: https://github.com/gschafra/grav-plugin-map-layers/issues
 docs: https://github.com/gschafra/grav-plugin-map-layers/blob/master/README.md
 license: MIT
@@ -47,11 +47,11 @@ form:
       type: elements
       label: Map tile provider
       options:
-        openstreetmap: "Open Street Map"
+        osm: "Open Street Map"
         bing: Bing
-      default: openstreetmap
+      default: osm
       fields:
-        openstreetmap:
+        osm:
           fields:
             preffered:
               type: select

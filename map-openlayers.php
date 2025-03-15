@@ -2,6 +2,7 @@
 namespace Grav\Plugin;
 
 use Composer\Autoload\ClassLoader;
+use Grav\Common\Page\Page;
 use Grav\Common\Plugin;
 use Grav\Common\Uri;
 use Grav\Plugin\MapOpenlayers\TileProxy\MapStyle;
@@ -10,6 +11,8 @@ use Grav\Plugin\MapOpenlayers\TileProxy\CustomTileProxy;
 
 class MapOpenlayersPlugin extends Plugin
 {
+    private Page $currentPage;
+
     public static function getSubscribedEvents()
     {
         return [
@@ -36,7 +39,9 @@ class MapOpenlayersPlugin extends Plugin
 
         $events = [
             'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
-            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
+            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
+            'onPageContentRaw' => ['onPageContentRaw', 1000],
+            'onPageContentProcessed' => ['onPageContentProcessed', 1000],
         ];
 
         // Register tile proxy handling if configured
@@ -56,10 +61,10 @@ class MapOpenlayersPlugin extends Plugin
         // Enable the main events we are interested in
         $this->enable($events);
         //add assets
-        // $assets = $this->grav['assets'];
+        $assets = $this->grav['assets'];
 
-        // $assets->addJs('plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]);
-        // $assets->addCss('plugin://map-openlayers/assets/openlayers.css', ['priority' => 90]);
+        $assets->addJs('plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]);
+        $assets->addCss('plugin://map-openlayers/assets/openlayers.css', ['priority' => 90]);
     }
 
     /**
@@ -89,5 +94,23 @@ class MapOpenlayersPlugin extends Plugin
     public function onShortcodeHandlers(Event $e)
     {
         $this->grav['shortcode']->registerAllShortcodes(__DIR__.'/shortcodes');
+    }
+
+    /* Detect which page is being processed, even if it is in a collection.
+     * We store it so that our shortcode can use it.
+     */
+    public function onPageContentRaw(Event $event)
+    {
+        $this->currentPage = $event['page'];
+    }
+
+    public function onPageContentProcessed(Event $event)
+    {
+        $this->currentPage = $event['page'];
+    }
+
+    public function getCurrentPage()
+    {
+        return $this->currentPage;
     }
 }

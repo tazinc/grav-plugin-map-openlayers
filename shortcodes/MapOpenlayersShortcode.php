@@ -1,6 +1,7 @@
 <?php
 namespace Grav\Plugin\Shortcodes;
 use Thunder\Shortcode\Shortcode\ShortcodeInterface;
+use Grav\Common\Grav;
 
 class MapOpenlayersShortcode extends Shortcode {
     public function init() {
@@ -30,7 +31,9 @@ class MapOpenlayersShortcode extends Shortcode {
                 }
 
                 $provider = [
-                    'tilestanza' => $providerFromList['tilestanza'],
+                    'tilestanza' => $config['tileProxy']['enabled']
+                        ? '/tile_proxy/' . $config['provider'] . '/{z}/{x}/{y}.png'
+                    :    $providerFromList['tilestanza'],
                     'attribution' => $providerFromList['attribution'],
                     'maxzoom' => $providerFromList['maxzoom'],
                     'apikey' => isset($providerFromList['apikey'])? $providerFromList['apikey'] : '',
@@ -40,7 +43,9 @@ class MapOpenlayersShortcode extends Shortcode {
             }
             else {
                 $provider = [
-                    'tilestanza' => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    'tilestanza' => $config['tileProxy']['enabled']
+                        ? '/tile_proxy/' . $config['provider'] . '/{z}/{x}/{y}.png'
+                        : 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                     'attribution' => 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
                     'maxzoom' => 17
                 ];
@@ -70,6 +75,9 @@ class MapOpenlayersShortcode extends Shortcode {
               $mml_map_id++;
             }
 
+            // $this->shortcode->addAssets('js', ['plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]]);
+            // $this->shortcode->addAssets('css', 'plugin://map-openlayers/assets/openlayers.css');
+
             $output = $twig->processTemplate(
                 'partials/mapopenlayers.html.twig',
                 array_merge(
@@ -87,9 +95,6 @@ class MapOpenlayersShortcode extends Shortcode {
                     ]
                 )
             );
-
-            $this->shortcode->addAssets('js', ['plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]]);
-            $this->shortcode->addAssets('css', 'plugin://map-openlayers/assets/openlayers.css');
 
             return $output;
         });
