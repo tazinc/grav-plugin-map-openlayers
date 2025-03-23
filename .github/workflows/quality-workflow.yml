@@ -4,11 +4,12 @@ on:
     branches:
       - main
   pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
-  build-and-publish:
+  quality-check:
     runs-on: ubuntu-latest
-    name: Release workflow
+    name: Quality workflow
     steps:
       # - name: Execute Action Graph
       #   uses: actionforge/action@5636645834e4a75cbc8c6c204e872ddc27632738 # v0.9.52
@@ -19,6 +20,10 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 9
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Depcheck
         uses: dependency-check/Dependency-Check_Action@main
         id: Depcheck
@@ -60,8 +65,3 @@ jobs:
         with:
           name: Depcheck report
           path: ${{github.workspace}}/reports
-      - name: SonarQube scan
-        uses: sonarsource/sonarqube-scan-action@v3
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
