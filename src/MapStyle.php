@@ -57,7 +57,7 @@ class MapStyle
     private $option_lang = null;
 
 
-    function __construct(string $stylename)
+    public function __construct(string $stylename)
     {
         $this->stylename = $stylename;
     }

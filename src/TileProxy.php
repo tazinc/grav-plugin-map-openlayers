@@ -316,11 +316,6 @@ class TileProxy
                 echo 'Runtime exception ' . $e->getMessage();
                 http_response_code(500);
                 return;
-            } catch (RuntimeException $e) {
-                header ('Content-Type: text/html');
-                echo $e->getMessage();
-                http_response_code(500);
-                return;
             }
 
 

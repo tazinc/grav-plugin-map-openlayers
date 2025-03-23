@@ -27,7 +27,7 @@ class MapOpenlayersPlugin extends Plugin
      */
     public function autoload(): ClassLoader
     {
-        return require __DIR__ . '/vendor/autoload.php';
+        return require_once __DIR__ . '/vendor/autoload.php';
     }
 
     public function onPluginsInitialized()

@@ -20,6 +20,8 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 9
+      - name: Quality Monitor
+        uses: uhafner/quality-monitor@v2.4.0
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
