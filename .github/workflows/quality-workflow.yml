@@ -83,7 +83,7 @@ jobs:
           with open('reports/dependency-check-report.html', 'r') as f:
               html_content = f.read()
           markdown_content = html2text.html2text(html_content)
-          with open('reports/dependency-check-report.md', 'w') as f:
+          with open('dependency-check-report.md', 'w') as f:
               f.write(markdown_content)
           "
 
@@ -91,4 +91,4 @@ jobs:
         shell: bash
         run: |
           echo "### Dependency Check Report" >> $GITHUB_STEP_SUMMARY
-          cat "reports/dependency-check-report.md" >> $GITHUB_STEP_SUMMARY
+          cat "dependency-check-report.md" >> $GITHUB_STEP_SUMMARY

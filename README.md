@@ -2,7 +2,7 @@
 [![Build Status](https://github.com/tazinc/grav-plugin-map-openlayers/actions/workflows/quality-workflow.yml/badge.svg)](https://github.comtazinc/grav-plugin-map-openlayers/actions?workflow=Quality+Build)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4801382c78e446ca81f46b21de3f35a3)](https://app.codacy.com/gh/tazinc/grav-plugin-map-openlayers/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Latest](https://img.shields.io/github/release/tazinc/grav-plugin-map-openlayers.svg)](https://github.com/tazinc/grav-plugin-map-openlayers)
-[![Snyk](https://snyk.io/test/github/tazinc/grav-plugin-map-openlayers/badge.svg)]
+![Snyk](https://snyk.io/test/github/tazinc/grav-plugin-map-openlayers/badge.svg)
 
 The **Map OpenLayers** Plugin is an extension for [Grav CMS](https://getgrav.org/), which makes use of the [OpenLayers JavaScript library](https://openlayers.org/) and data from the popular map data provider [OpenStreetMap](https://www.openstreetmap.org). It allows you to add OpenLayers maps with markers to your pages. Additionally, it allows proxying the map data locally to avoid sending requests to the OpenStreetMap servers, thus preventing direct IP tracking by OpenStreetMap and therefore increasing privacy.
 
