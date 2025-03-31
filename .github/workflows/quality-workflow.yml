@@ -64,8 +64,31 @@ jobs:
             --disableAssembly
             --disableCocoapodsAnalyzer
             --disableSwiftPackageManagerAnalyzer
-      - name: Upload Test results
+
+      - name: Upload dependency check HTML report artifact
         uses: actions/upload-artifact@master
         with:
-          name: Depcheck report
-          path: ${{github.workspace}}/reports
+          name: dependency_check_report
+          path: reports/dependency-check-report.html
+
+      - name: Install html2text
+        shell: bash
+        run: pip install html2text
+
+      - name: Convert HTML to Markdown using Python
+        shell: bash
+        run: |
+          python -c "
+          import html2text
+          with open('reports/dependency-check-report.html', 'r') as f:
+              html_content = f.read()
+          markdown_content = html2text.html2text(html_content)
+          with open('reports/dependency-check-report.md', 'w') as f:
+              f.write(markdown_content)
+          "
+
+      - name: Add report to Summary
+        shell: bash
+        run: |
+          echo "### Dependency Check Report" >> $GITHUB_STEP_SUMMARY
+          cat "reports/dependency-check-report.md" >> $GITHUB_STEP_SUMMARY
