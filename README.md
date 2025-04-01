@@ -89,6 +89,20 @@ The plugin provides two shortcodes:
             - `text` -- the text inside the marker (default = '') Should be kept short.
             - `markerColor` and ` iconColor` can be set in the hash or a default set in the shortcode.
 
+### Marker Colours
+Markers are coloured images, so only a finite number are possible. The following colors are provided:
+
+| |  |  |  |
+|---|---|---|---|
+| red | orange | green | blue |
+| purple | darkred | darkblue | darkgreen |
+| darkpurple | cadetblue | lightred | beige |
+| lightgreen | lightblue | pink | salmon |
+|white | lightgray | gray | black |
+
+The colours correspond to:
+![](assets/images/markers-soft.png)
+
 ### Example
 
 e.g. in a default page like /user/pages/01.map/default.md

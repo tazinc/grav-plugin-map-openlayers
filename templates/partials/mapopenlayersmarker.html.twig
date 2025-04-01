@@ -1,0 +1,38 @@
+{# {% if mk %} #}
+  let features = [];
+  let feature = null;
+
+  {% for mk in mks %}
+  // Add feature for each marker
+  feature = new ol.Feature({
+    geometry: new ol.Point([{{ mk.lng|raw }},{{ mk.lat|raw }}]),
+    name: '{{ mk.title|raw }}',
+    {# icon: '{{ mk.icon|raw }}',
+    color: '{{ mk.mcol|raw }}',s
+    iconColor: '{{ mk.icol|raw }}',
+    {% if mk.text %}text: "{{ mk.text|raw }}",{% endif %} #}
+  });
+
+  feature.setStyle(new ol.Style({
+    image: new ol.Icon({
+      anchor: [0.5, 46],
+      anchorXUnits: 'fraction',
+      anchorYUnits: 'pixels',
+      src: '{{ plugin_path }}/assets/images/{{ mk.color|raw }}.png',
+      crossOrigin: 'anonymous',
+      {# color: '#BADA55', #}
+    }),
+  }));
+
+  features.push(feature);
+  {% endfor %}
+
+  // Create a vector layer with the features
+  const vectorSource = new ol.VectorSource({
+    features: features,
+  });
+
+  const vectorLayer = new ol.VectorLayer({
+    source: vectorSource,
+  });
+{# {% endif %} #}

@@ -1,6 +1,8 @@
 <div id="{{ mapname|raw }}" {% if classes %}class="{{ classes|raw }}"{% else %}style="width: {{ width|raw }}; height: {{ height|raw }};" {%endif %}></div>
 <script>
 document.addEventListener('DOMContentLoaded', function(event) {
+    {{ markercode|raw }}
+
     const map = new ol.Map({
         target: '{{ mapname|raw }}',
         layers: [
@@ -9,9 +11,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
                     url: '{{ tilestanza }}'
                 }),
             }),
+            vectorLayer,
         ],
         view: new ol.View({
-            center: [{{ lat|raw }}, {{ lng|raw }}],
+            center: [{{ lng|raw }}, {{ lat|raw }}],
             zoom: {{ zoom|raw }},
         }),
     });

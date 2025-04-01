@@ -42,6 +42,7 @@ class MapOpenlayersPlugin extends Plugin
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
             'onPageContentRaw' => ['onPageContentRaw', 1000],
             'onPageContentProcessed' => ['onPageContentProcessed', 1000],
+            'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
         ];
 
         // Register tile proxy handling if configured
@@ -65,6 +66,11 @@ class MapOpenlayersPlugin extends Plugin
 
         $assets->addJs('plugin://map-openlayers/assets/openlayers.js', ['loading' => 'defer', 'priority' => 90]);
         $assets->addCss('plugin://map-openlayers/assets/openlayers.css', ['priority' => 90]);
+    }
+
+    public function onTwigSiteVariables()
+    {
+        $this->grav['twig']->twig_vars['plugin_path'] = $this->grav['uri']->rootUrl() . '/user/plugins/' . $this->name;
     }
 
     /**
