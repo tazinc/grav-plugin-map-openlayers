@@ -1,6 +1,7 @@
 # Map OpenLayers Plugin
 [![Build Status](https://github.com/tazinc/grav-plugin-map-openlayers/actions/workflows/quality-workflow.yml/badge.svg)](https://github.comtazinc/grav-plugin-map-openlayers/actions?workflow=Quality+Build)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4801382c78e446ca81f46b21de3f35a3)](https://app.codacy.com/gh/tazinc/grav-plugin-map-openlayers/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tazinc_grav-plugin-map-openlayers&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tazinc_grav-plugin-map-openlayers)
 [![Latest](https://img.shields.io/github/release/tazinc/grav-plugin-map-openlayers.svg)](https://github.com/tazinc/grav-plugin-map-openlayers)
 ![Snyk](https://snyk.io/test/github/tazinc/grav-plugin-map-openlayers/badge.svg)
 
