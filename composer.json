@@ -13,12 +13,12 @@
     }
   ],
   "require": {
-    "php": ">=8.2.1",
+    "php": ">=8.3.0",
     "intervention/image": "^4.0"
   },
   "config": {
     "platform": {
-      "php": "8.3"
+      "php": "8.4"
     }
   },
   "require-dev": {
