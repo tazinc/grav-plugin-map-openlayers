@@ -14,7 +14,7 @@
   ],
   "require": {
     "php": ">=8.2.1",
-    "intervention/image": "^3.9"
+    "intervention/image": "^4.0"
   },
   "config": {
     "platform": {

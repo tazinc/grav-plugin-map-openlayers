@@ -25,6 +25,13 @@
 namespace  Grav\Plugin\MapOpenlayers\TileProxy;
 
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Encoders\AutoEncoder;
+use Intervention\Image\Encoders\BmpEncoder;
+use Intervention\Image\Encoders\Jpeg2000Encoder;
+use Intervention\Image\Encoders\JpegEncoder;
+use Intervention\Image\Encoders\PngEncoder;
+use Intervention\Image\Encoders\TiffEncoder;
+use Intervention\Image\Encoders\WebpEncoder;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Interfaces\EncodedImageInterface;
 use Intervention\Image\Interfaces\ImageInterface;
@@ -205,22 +212,32 @@ class TileProxy
 
     private function imageEncoded(ImageInterface $image, string $format): EncodedImageInterface
     {
+        $encoder = new AutoEncoder();
+
         switch ($format) {
             case 'jpg':
-                return $image->toJpeg();
+                $encoder = new JpegEncoder();
+                break;
             case 'png':
-                return $image->toPng();
+                $encoder = new PngEncoder();
+                break;
             case 'webp':
-                return $image->toWebp();
+                $encoder = new WebpEncoder();
+                break;
             case 'tif':
-                return $image->toTiff();
+                $encoder = new TiffEncoder();
+                break;
             case 'bpm':
-                return $image->toBitmap();
+                $encoder = new BmpEncoder();
+                break;
             case 'jpg2000':
-                return $image->toJpeg2000();
+                $encoder = new Jpeg2000Encoder();
+                break;
             default:
                 throw new RuntimeException('Unsupported image format: ' . $format);
         }
+
+        return $image->encode($encoder);
     }
 
     /**
