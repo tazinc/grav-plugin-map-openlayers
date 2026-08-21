@@ -17,6 +17,11 @@ dependencies:
   - { name: grav, version: ">=1.7.0" }
   - { name: shortcode-core, version: ">=5.1.0" }
 
+compatibility:
+  grav:
+    - '1.7'
+    - '2.0'
+
 form:
   fields:
     enabled:
