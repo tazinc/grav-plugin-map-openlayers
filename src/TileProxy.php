@@ -117,7 +117,7 @@ class TileProxy
     private function is_valid_image(string $path, MapStyle $current_style): bool
     {
         if(file_exists($path)) {
-            $a = getimagesize($path);
+            $a = @getimagesize($path);
             if($a) {
                return true;
             }
@@ -152,13 +152,15 @@ class TileProxy
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_USERAGENT, $this->user_agent);
         curl_exec($ch);
+        $curl_errno = curl_errno($ch);
+        $curl_error = curl_error($ch);
         curl_close($ch);
         fflush($fp);
         fclose($fp);
 
         // check if image downloaded successfully
-        if (curl_errno($ch) !== 0) {
-            throw new RuntimeException(curl_error($ch));
+        if ($curl_errno !== 0) {
+            throw new RuntimeException($curl_error);
         } elseif ($this->is_valid_image($save_to, $current_style)) {
 
             if($current_style->getImageChecktype() !== MapStyle::IMAGE_FORMAT_PNG) {
