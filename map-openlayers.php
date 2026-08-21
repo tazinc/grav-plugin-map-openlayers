@@ -2,6 +2,7 @@
 namespace Grav\Plugin;
 
 use Composer\Autoload\ClassLoader;
+use Grav\Common\Filesystem\Folder;
 use Grav\Common\Page\Page;
 use Grav\Common\Plugin;
 use Grav\Common\Uri;
@@ -16,7 +17,8 @@ class MapOpenlayersPlugin extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0]
+            'onPluginsInitialized' => ['onPluginsInitialized', 0],
+            'onCacheClear' => ['onCacheClear', 0],
         ];
     }
 
@@ -28,6 +30,14 @@ class MapOpenlayersPlugin extends Plugin
     public function autoload(): ClassLoader
     {
         return require_once __DIR__ . '/vendor/autoload.php';
+    }
+
+    public function onCacheClear(): void
+    {
+        $cacheDir = $this->grav['locator']->findResource('user-data://', true) . DS . 'map-openlayers' . DS . 'tile-cache';
+        if (is_dir($cacheDir)) {
+            Folder::delete($cacheDir);
+        }
     }
 
     public function onPluginsInitialized()
