@@ -16,7 +16,7 @@
     "@rollup/plugin-typescript": "^12.3.0",
     "autoprefixer": "^10.5.4",
     "css-loader": "^7.1.4",
-    "cssnano": "^8.0.8",
+    "cssnano": "^8.0.10",
     "minimist": "^1.2.8",
     "npm-run-all2": "^9.0.3",
     "npm-watch": "^0.13.0",

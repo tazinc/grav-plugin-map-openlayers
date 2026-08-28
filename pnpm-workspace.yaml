@@ -2,3 +2,7 @@ allowBuilds:
   '@parcel/watcher': true
 ignoredBuiltDependencies:
   - '@parcel/watcher'
+minimumReleaseAgeExclude:
+  - '@rollup/*'
+  - 'css-loader'
+  - 'rollup'

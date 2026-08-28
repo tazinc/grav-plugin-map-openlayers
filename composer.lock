@@ -76,16 +76,16 @@
         },
         {
             "name": "intervention/image",
-            "version": "4.3.0",
+            "version": "4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "5598b9e39751c34afc5cdee84abef77f92c26f68"
+                "reference": "3fd8ac3da6410d4de873be7be665f8ce8e6aeec5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/5598b9e39751c34afc5cdee84abef77f92c26f68",
-                "reference": "5598b9e39751c34afc5cdee84abef77f92c26f68",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/3fd8ac3da6410d4de873be7be665f8ce8e6aeec5",
+                "reference": "3fd8ac3da6410d4de873be7be665f8ce8e6aeec5",
                 "shasum": ""
             },
             "require": {
@@ -132,7 +132,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/4.3.0"
+                "source": "https://github.com/Intervention/image/tree/4.3.1"
             },
             "funding": [
                 {
@@ -148,7 +148,7 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2026-08-21T12:18:16+00:00"
+            "time": "2026-08-24T13:23:45+00:00"
         }
     ],
     "packages-dev": [
@@ -218,16 +218,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "2.6.3",
+            "version": "2.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "7e46709996a4b3dc59e1d6ecbb6a38ace335bd58"
+                "reference": "6ff008471683591224951526247b7a2b86980ba9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/7e46709996a4b3dc59e1d6ecbb6a38ace335bd58",
-                "reference": "7e46709996a4b3dc59e1d6ecbb6a38ace335bd58",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/6ff008471683591224951526247b7a2b86980ba9",
+                "reference": "6ff008471683591224951526247b7a2b86980ba9",
                 "shasum": ""
             },
             "require": {
@@ -266,7 +266,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/2.6.3"
+                "source": "https://github.com/rectorphp/rector/tree/2.6.4"
             },
             "funding": [
                 {
@@ -274,20 +274,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-18T22:01:18+00:00"
+            "time": "2026-08-27T09:20:34+00:00"
         },
         {
             "name": "symplify/easy-coding-standard",
-            "version": "13.2.18",
+            "version": "13.2.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecsphp/ecs.git",
-                "reference": "14449735108430e3f2c4d9e58699b95d6855240b"
+                "reference": "a2af21c295837302b095180659971029a8294200"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ecsphp/ecs/zipball/14449735108430e3f2c4d9e58699b95d6855240b",
-                "reference": "14449735108430e3f2c4d9e58699b95d6855240b",
+                "url": "https://api.github.com/repos/ecsphp/ecs/zipball/a2af21c295837302b095180659971029a8294200",
+                "reference": "a2af21c295837302b095180659971029a8294200",
                 "shasum": ""
             },
             "require": {
@@ -322,9 +322,9 @@
                 "static analysis"
             ],
             "support": {
-                "source": "https://github.com/ecsphp/ecs/tree/13.2.18"
+                "source": "https://github.com/ecsphp/ecs/tree/13.2.19"
             },
-            "time": "2026-08-20T16:49:05+00:00"
+            "time": "2026-08-24T17:02:37+00:00"
         }
     ],
     "aliases": [],
