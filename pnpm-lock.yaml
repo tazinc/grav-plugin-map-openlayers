@@ -80,10 +80,10 @@ importers:
         version: 4.0.1
       sass:
         specifier: ^1.103.1
-        version: 1.103.1
+        version: 1.104.0
       sass-loader:
         specifier: ^17.0.0
-        version: 17.0.0(sass@1.103.1)(webpack@5.93.0)
+        version: 17.0.0(sass@1.104.0)(webpack@5.93.0)
       style-loader:
         specifier: ^4.0.0
         version: 4.0.0(webpack@5.93.0)
@@ -2544,8 +2544,8 @@ packages:
       webpack:
         optional: true
 
-  sass@1.103.1:
-    resolution: {integrity: sha512-9icZURbP51S6S0QGoyaeqk9uB06GNWxsFYWfH5RgpFgqK5FA8tJcM3AdVxrZEVJ7dz+L87nG95gBKf4VuaMHGw==}
+  sass@1.104.0:
+    resolution: {integrity: sha512-btHMApW2bgolvClhRW8AlQJzgI9lUB3pPSofBQQT+E46GWvf9o0TVQ13SYv5riWZVFyPN+JNz3TKW9XhBlc10w==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -5328,12 +5328,12 @@ snapshots:
 
   safe-identifier@0.4.2: {}
 
-  sass-loader@17.0.0(sass@1.103.1)(webpack@5.93.0):
+  sass-loader@17.0.0(sass@1.104.0)(webpack@5.93.0):
     optionalDependencies:
-      sass: 1.103.1
+      sass: 1.104.0
       webpack: 5.93.0
 
-  sass@1.103.1:
+  sass@1.104.0:
     dependencies:
       chokidar: 5.0.0
       immutable: 5.1.9
