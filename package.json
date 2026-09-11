@@ -41,7 +41,7 @@
   "license": "ISC",
   "volta": {
     "node": "24.19.0",
-    "pnpm": "11.23.0"
+    "pnpm": "12.4.0"
   },
   "dependencies": {
     "ol": "10.10.0"
